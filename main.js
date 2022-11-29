@@ -57,6 +57,7 @@ const pAequorFactory = (number, dnaBaseArr) => {
         }
         commonPct = ((commonDNA/this.dna.length) * 100).toFixed();
         console.log(`Specimen #${this.specimenNum} and specimen #${sample2.specimenNum} have ${commonPct}% DNA in common`);
+        return commonPct;
       },
       willLikelySurvive() {
         let dnaCount = 0;
@@ -70,6 +71,21 @@ const pAequorFactory = (number, dnaBaseArr) => {
         } else {
           return false;
         }
+      },
+      complementStrand() {
+        const compStrand = [];
+        for (let i = 0; i < this.dna.length; i++) {
+          if (this.dna[i] === 'A') {
+            compStrand[i] = 'T';
+          } else if (this.dna[i] === 'T') {
+            compStrand[i] = 'A';
+          } else if (this.dna[i] === 'C') {
+            compStrand[i] = 'G';
+          } else {
+            compStrand[i] = 'C';
+          }
+        }
+        return compStrand;
       }
     }
 };
@@ -97,4 +113,8 @@ while (pAequorCount <= 30) {
   }
 }
 
-console.log(pAequorSurvivors);
+// console.log(pAequorSurvivors);
+
+// const dna3 = pAequorFactory(3, mockUpStrand());
+// console.log(dna3.dna);
+// console.log(dna3.complementStrand());
